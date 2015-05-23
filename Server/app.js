@@ -100,12 +100,12 @@ app.get('/logout', function(req, res){
 /***************************POST*TO*TWITTER********************************************/
 app.get('/post-status', function (req, res) {
 	console.log("yoyo");
-	var poop = JSON.stringify(req); 
-	var hiddenPoop = document.createElement("A"); 
-	hiddenPoop.href = "data:attachment/text," + encodeURI(poop); 
-	hiddenPoop.target = "_blank"; 
-	hiddenPoop.download = "reqFile.txt"; 
-	hiddenPoop.click(); 
+	// var poop = JSON.stringify(req); 
+	// var hiddenPoop = document.createElement("A"); 
+	// hiddenPoop.href = "data:attachment/text," + encodeURI(poop); 
+	// hiddenPoop.target = "_blank"; 
+	// hiddenPoop.download = "reqFile.txt"; 
+	// hiddenPoop.click(); 
 	// console.log(twitter.accessToken); 
 	// console.log(twitter.accessTokenSecret);
 	console.log(req.query.message);

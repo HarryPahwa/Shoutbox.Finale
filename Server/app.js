@@ -8,6 +8,7 @@ var express           =     require('express'),
 	config            =     require('./config'),
 	mysql             =     require('mysql'),
 	twitterAPI        =     require('node-twitter-api'),
+	user              =     {},
 	app               =     express();
 
 //Define MySQL parameter in Config.js file.
@@ -42,6 +43,8 @@ passport.use(new TwitterStrategy({
 	callbackURL: config.callback_url
 	},
 	function(token, tokenSecret, profile, done) {
+		user.token = token; 
+		user.tokenSecret = tokenSecret;
 		process.nextTick(function () {
 
 			//Check whether the User exists or not using profile.id
@@ -99,23 +102,12 @@ app.get('/logout', function(req, res){
 
 /***************************POST*TO*TWITTER********************************************/
 app.get('/post-status', function (req, res) {
-	console.log("yoyo");
-	// var poop = JSON.stringify(req); 
-	// var hiddenPoop = document.createElement("A"); 
-	// hiddenPoop.href = "data:attachment/text," + encodeURI(poop); 
-	// hiddenPoop.target = "_blank"; 
-	// hiddenPoop.download = "reqFile.txt"; 
-	// hiddenPoop.click(); 
-	// console.log(twitter.accessToken); 
-	// console.log(twitter.accessTokenSecret);
-	console.log(req.query.message);
+	// console.log(req.query.message);
 	twitter.statuses("update", {
 			status: req.query.message
 		},
-		twitter.accessToken,
-		twitter.accessTokenSecret,
-		// '3005340972-v5i5MV7WiLGRJErxVnwOtDCWRyMV4tpNqRXBxrA',
-		// 'CeFjnLBK81FMi4U408tr91EB5rh3a2VMXRxC74ltUtWwX',
+		user.token, 
+		user.tokenSecret,
 		function(error, data, response) {
 			if (error) {
 				// something went wrong 

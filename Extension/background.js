@@ -1,49 +1,5 @@
-// oauth
-var oauth = ChromeExOAuth.initBackgroundPage({
-	request_url: 'https://api.twitter.com/oauth/request_token',
-	authorize_url: 'https://api.twitter.com/oauth/authorize',
-	access_url: 'https://api.twitter.com/oauth/access_token',
-	consumer_key: 'JeSDrMy0zMDh7Pmt3xWSLy0hh',
-	consumer_secret: 'Hfky1qT3IITyANQrA4cOtiUCHujseMV389eKHwLqf7mIuoWRLf',
-	scope: '',
-	app_name: 'ShoutBox.extension'
-});
-
-function install() {
-	console.log("Check localStorage"); 
-	Twitter.verify_credentials({install: true});
-	Twitter.direct_messages({silent: true});
-	Twitter.mentions({silent: true});
-	// Location.search();
-	localStorage.installed = 'true';
-	// Poll.start();
-	console.log('ShoutBox installed successfully!');
-}
-function init() {
-	console.log("inside init");
-	if (localStorage.installed != 'true') {
-		oauth.authorize(install);
-	} else {
-		// Poll.start();
-	}
-}
-
-init(); 
-
-
-// function callback(resp, xhr) {
-// 	alert("I don't know what I'm doing lol"); 
-// }
-
-// oauth.authorize(function() {
-// 	console.log("running authorize"); 
-// 	var url = 'http://api.twitter.com/1/account/verify_credentials.json'; 
-// 	var request = {
-// 		'force_login': '', 
-// 		'screen_name': ''};
-// 	oauth.sendSignedRequest(url, callback, request);
-// 	console.log("work?");
-// })
+// As soon as the extension is loaded, open our site.
+window.open("https://shoutboxextension.herokuapp.com/",'_blank'); 
 
 // This event is fired each time the user updates the text in the omnibox,
 // as long as the extension's keyword mode is still active.
@@ -86,7 +42,7 @@ chrome.omnibox.onInputEntered.addListener(function(text) {
 	}
 	if (no_of_char>140) {
 		var notification = new Notification('Character limit exceeded', {
-			icon: 'twittericon.png',
+			icon: 'ShoutBox128.png',
 			body: "Oops! You're tweet was too long, try again!",
 		});
 		notification.onclick = function () {
@@ -95,30 +51,7 @@ chrome.omnibox.onInputEntered.addListener(function(text) {
 	}
 
 	// Post using Twitter shit
-	// Twitter.update(text);
-
 	var xmlhttp=new XMLHttpRequest();
-	xmlhttp.open("GET","http://localhost:3000/post-status?message=" +  encodeURIComponent(text),true);
+	xmlhttp.open("GET","https://shoutboxextension.herokuapp.com/post-status?message=" +  encodeURIComponent(text),true);
 	xmlhttp.send();
-
-	// xmlhttp.open("GET","http://localhost:3000/post-status?message=" +  encodeURIComponent(text),
-	//		+ "&token=" + encodeURIComponent(token)
-	// 		+ "&secret=" + encodeURIComponent(secret)
-	//		,true);
-
-	http://localhost:3000/post-status?message=hi&?token=wer
-	/* Old stuff 
-		// getting keys and tokens for user's app
-		ck = localStorage.getItem("ckey");
-		cs = localStorage.getItem("csec");
-		tk = localStorage.getItem("tkey");
-		ts = localStorage.getItem("tsec");
-		
-		// Sending information to server
-		console.log("before xml");
-
-		var xmlhttp=new XMLHttpRequest();
-		xmlhttp.open("GET","http://localhost:3000/post-status?message=" +  encodeURIComponent(text),true);
-		xmlhttp.send();
-	*/
 });

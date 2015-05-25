@@ -4,48 +4,33 @@
 	"version": "1.0",
 	"manifest_version":2,
 	"omnibox": { "keyword" : "ShoutBox" },
-	// Do not touch above
 
 	"icons": {
-		"16":"icon.png",
-		"19":"icon.png",
-		"48":"icon.png",
-		"128":"icon.png"
+		"16":"ShoutBox128.png",
+		"48":"ShoutBox128.png",
+		"128":"ShoutBox128.png"
 		},
-	// Need to add an icon for tiniest size
-	// Also get new icon
 		
 	"permissions":[
 		"notifications",
-		"tabs", // allows us to use the oauth library
-		"http://www.twitter.com/", 
-		"https://api.twitter.com/oauth/request_token", 
-		"https://api.twitter.com/oauth/authorize", 
-		"https://api.twitter.com/oauth/access_token"
+		"http://www.twitter.com/" 
 		],
-	// Don't remember what this is 
-		// "https://api.twitter.com",
-	
 
 	"web_accessible_resources": [
-		"icon.png",
-		"icon-bw.png"
+		"ShoutBox128.png"
 		],
-	// Need new icons
 		
 	"options_page": "popup.html",
-	// Should make a new thing or not even a thing
 
 	"background": {
 		"persistent": true,
 		// "scripts": ["background.js"]
 		"page": "background.html"
 		},
-	// yeah!
 
 	"browser_action": {
-    	"default_icon": "icon.png",
-    	"default_popup": "popup.html"
+    	"default_icon": "ShoutBox128.png"
+    	// "default_popup": "popup.html"
 		}
 	// need to research this
 }

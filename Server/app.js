@@ -124,7 +124,6 @@ app.get('/post-status', function (req, res) {
 		}
 	);
 })
-// var twitterAPI = require('node-twitter-api');
 var twitter = new twitterAPI({
 	consumerKey: config.twitter_api_key,
 	consumerSecret:config.twitter_api_secret ,

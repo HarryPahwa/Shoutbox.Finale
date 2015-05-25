@@ -71,7 +71,10 @@ app.set('views', __dirname + '/templates');
 app.set('view engine', 'ejs');
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(session({ secret: 'keyboard cat', key: 'sid'}));
+app.use(session({ secret: 'keyboard cat',
+					saveUninitialized: true,
+					resave: true,
+					key: 'sid'}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(__dirname + '/img'));
@@ -135,4 +138,4 @@ function ensureAuthenticated(req, res, next) {
 	res.redirect('/login')
 }
 
-app.listen(3000);
+app.listen(process.env.PORT || 3000);

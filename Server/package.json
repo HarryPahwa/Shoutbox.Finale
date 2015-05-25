@@ -1,6 +1,17 @@
 {
 	"name": "shoutbox-website",
 	"version": "0.0.1",
+<<<<<<< HEAD
+=======
+	"description": "This server is for the website that goes with the Chrome Extension: ShoutBox",
+	"repository": {
+		"type": "git", 
+		"url": "https://github.com/askalburgi/ShoutBoxServer"
+	},
+	"scripts": {
+		"start": "node app.js"
+	},
+>>>>>>> origin/master
 	"dependencies":
 	{
 		"body-parser": "1.7.0",

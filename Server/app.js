@@ -8,6 +8,7 @@ var express           =     require('express'),
 	config            =     require('./config'),
 	mysql             =     require('mysql'),
 	twitterAPI        =     require('node-twitter-api'),
+	user              =     {},
 	app               =     express();
 
 //Define MySQL parameter in Config.js file.
@@ -42,6 +43,8 @@ passport.use(new TwitterStrategy({
 	callbackURL: config.callback_url
 	},
 	function(token, tokenSecret, profile, done) {
+		user.token = token; 
+		user.tokenSecret = tokenSecret;
 		process.nextTick(function () {
 
 			//Check whether the User exists or not using profile.id
@@ -68,7 +71,10 @@ app.set('views', __dirname + '/templates');
 app.set('view engine', 'ejs');
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(session({ secret: 'keyboard cat', key: 'sid'}));
+app.use(session({ secret: 'keyboard cat',
+					saveUninitialized: true,
+					resave: true,
+					key: 'sid'}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(__dirname + '/img'));
@@ -99,17 +105,12 @@ app.get('/logout', function(req, res){
 
 /***************************POST*TO*TWITTER********************************************/
 app.get('/post-status', function (req, res) {
-	console.log("yoyo");
-	console.log(twitter.accessToken); 
-	console.log(twitter.accessTokenSecret);
-	console.log(req.query.message);
+	// console.log(req.query.message);
 	twitter.statuses("update", {
 			status: req.query.message
 		},
-		twitter.accessToken,
-		twitter.accessTokenSecret,
-		// '3005340972-v5i5MV7WiLGRJErxVnwOtDCWRyMV4tpNqRXBxrA',
-		// 'CeFjnLBK81FMi4U408tr91EB5rh3a2VMXRxC74ltUtWwX',
+		user.token, 
+		user.tokenSecret,
 		function(error, data, response) {
 			if (error) {
 				// something went wrong 
@@ -137,4 +138,4 @@ function ensureAuthenticated(req, res, next) {
 	res.redirect('/login')
 }
 
-app.listen(3000);
+app.listen(process.env.PORT || 3000);

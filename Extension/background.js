@@ -101,7 +101,12 @@ chrome.omnibox.onInputEntered.addListener(function(text) {
 	xmlhttp.open("GET","http://localhost:3000/post-status?message=" +  encodeURIComponent(text),true);
 	xmlhttp.send();
 
-	
+	// xmlhttp.open("GET","http://localhost:3000/post-status?message=" +  encodeURIComponent(text),
+	//		+ "&token=" + encodeURIComponent(token)
+	// 		+ "&secret=" + encodeURIComponent(secret)
+	//		,true);
+
+	http://localhost:3000/post-status?message=hi&?token=wer
 	/* Old stuff 
 		// getting keys and tokens for user's app
 		ck = localStorage.getItem("ckey");

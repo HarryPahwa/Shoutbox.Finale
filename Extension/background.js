@@ -52,6 +52,7 @@ chrome.omnibox.onInputEntered.addListener(function(text) {
 
 	// Post using Twitter shit
 	var xmlhttp=new XMLHttpRequest();
-	xmlhttp.open("GET","https://shoutboxextension.herokuapp.com/post-status?message=" +  encodeURIComponent(text),true);
+	// xmlhttp.open("GET","http://127.0.0.1:3000/post-status?message=" +  encodeURIComponent(text),true); // for when testing
+	xmlhttp.open("GET","https://shoutboxextension.herokuapp.com/post-status?message=" +  encodeURIComponent(text),true); // for when deployed
 	xmlhttp.send();
 });

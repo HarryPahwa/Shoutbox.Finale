@@ -8,7 +8,6 @@ var express           =     require('express'),
 	config            =     require('./config'),
 	mysql             =     require('mysql'),
 	twitterAPI        =     require('node-twitter-api'),
-	user              =     {},
 	app               =     express();
 
 //Define MySQL parameter in Config.js file.
@@ -21,8 +20,7 @@ var connection = mysql.createConnection({
 
 
 //Connect to Database only if Config.js parameter is set.
-if(config.use_database==='true')
-{
+if(config.use_database==='true') {
 	connection.connect();
 }
 
@@ -43,8 +41,8 @@ passport.use(new TwitterStrategy({
 	callbackURL: config.callback_url
 	},
 	function(token, tokenSecret, profile, done) {
-		user.token = token; 
-		user.tokenSecret = tokenSecret;
+		session.token = token;
+		session.tokenSecret = tokenSecret;
 		process.nextTick(function () {
 
 			//Check whether the User exists or not using profile.id
@@ -100,6 +98,8 @@ app.get('/auth/twitter/callback',
 
 app.get('/logout', function(req, res){
 	req.logout();
+	delete session.token;
+	delete session.tokenSecret;
 	res.redirect('/');
 });
 
@@ -109,8 +109,8 @@ app.get('/post-status', function (req, res) {
 	twitter.statuses("update", {
 			status: req.query.message
 		},
-		user.token, 
-		user.tokenSecret,
+		session.token, 
+		session.tokenSecret,
 		function(error, data, response) {
 			if (error) {
 				// something went wrong 

@@ -1,18 +1,67 @@
 <% if (!user) { %>
-	<h2>Welcome! Please log in.</h2>
-	<a href="/auth/twitter"><img src="sign-in-with-twitter-l.png" width="151" height="24"></a>
+	<div style="background-color:rgb(44, 62, 80); color:white; text-align:center; margin-left:-3000px; margin-right:-3000px;">
+		<br/>
+		<br/>
+		<h1>SHOUTBOX</h1>
+		<h2>
+			--- <img src="ShoutBoxWhite.png" style="vertical-align:middle; width:40px;"> ---<br/>
+			Tweet. Faster.
+		</h2>
+		<br/>
+		<br/>
+	</div>
+
+	<div style="color:rgb(44, 62, 80); text-align:center; margin-left:-3000px; margin-right:-3000px;">
+		<br/><br/>
+		<h2>GET STARTED</h2>
+		<a href="/auth/twitter"><img src="sign-in-with-twitter-l.png" width="250" height="63"></a>
+		<br/><br/><br/>
+	</div>
+
+	<div style="background-color:rgb(44, 62, 80); color:white; text-align:center; margin-left:-3000px; margin-right:-3000px;">
+		<br/><br/>
+		<h2>CREATED BY</h2>
+		<div>
+			<h3><a style="color:white;" target="_blank" href="http://arjunkalburgi.com">Arjun Kalburgi</a> | 
+			<a style="color:white;" target="_blank" href="https://www.ualberta.ca/~hsingh3/">Harpreet Singh</a></h3>
+		</div>
+		<br/><br/>
+		<br/><br/>
+	</div>
+
+		
+
 <% } else { %>
-	<h2>Hello, @<%= user.username %>.</h2>
-	Thanks for signing into ShoutBox! 
-	Try to type in your tweet! 
 
-	<br>
-	<br>
+	<div style="background-color:rgb(44, 62, 80); color:white; text-align:center; margin-left:-3000px; margin-right:-3000px;">
+		<br/>
+		<br/>
+		<h1>SHOUTBOX</h1>
+		<h2>
+			--- <img src="ShoutBoxWhite.png" style="vertical-align:middle; width:40px;"> ---<br/>
+			Tweet. Faster.
+		</h2>
+		<br/>
+		<br/>
+	</div>
 
-	Go to: <br> 
-	<a href="/account">Account</a> | 
-	<a href="/logout">Log Out</a>
+	<div style="color:rgb(44, 62, 80); text-align:center; margin-left:-3000px; margin-right:-3000px;">
+		<br/><br/>
+		<h2>
+			Hello user,<br/>
+			Thank you for signing in, you may now close this window and tweet.
+		</h2>
+		<br/><br/>
+	</div>
 
-
+	<div style="background-color:rgb(44, 62, 80); color:white; text-align:center; margin-left:-3000px; margin-right:-3000px;">
+		<br/><br/>
+		<h2>ELSE</h2>
+		<h3>
+			<a href="/account" style="color:white;">
+			Account</a> | <a href="/logout" style="color:white;">Log Out</a>
+		</h3>
+		<br/><br/>
+	</div>
 
 <% } %>

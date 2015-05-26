@@ -3,7 +3,7 @@
 	"description": "This is the all new ShoutBox extension",
 	"version": "1.0",
 	"manifest_version":2,
-	"omnibox": { "keyword" : "ShoutBox" },
+	"omnibox": { "keyword" : "@" },
 
 	"icons": {
 		"16":"ShoutBox128.png",

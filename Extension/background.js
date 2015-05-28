@@ -10,7 +10,7 @@ chrome.omnibox.onInputChanged.addListener(function(text, suggest) {
 	// First suggest line
 	var char_remain = new String();
 	if (text.length<=140){
-			char_remain=String(140-text.length) + " Characters remaining";
+			char_remain="Press Enter to Tweet - " + String(140-text.length) + " characters remaining";
 		}
 		else {
 			char_remain="Too Long!";
@@ -21,8 +21,8 @@ chrome.omnibox.onInputChanged.addListener(function(text, suggest) {
 	
 	// Other suggest lines
 	suggest([
-		{content: text + " ", description: "You can mention people too! Type '@' followed by the twitter handle!"},
-		{content: text + " ", description: "Post links, they'll automatically shorten!"},
+		{content: text + " ", description: "Use mentions - Type '@' followed by a twitter handle."},
+		{content: text + " ", description: "Paste in links - They will automatically shorten."}
 	]);
 });
 

@@ -1,6 +1,6 @@
 {
 	"name": "ShoutBox",
-	"description": "This is the all new ShoutBox extension",
+	"description": "Tweet faster with the power of Chrome.",
 	"version": "1.0",
 	"manifest_version":2,
 	"omnibox": { "keyword" : "@" },
@@ -15,22 +15,19 @@
 		"notifications",
 		"http://www.twitter.com/" 
 		],
-
-	"web_accessible_resources": [
-		"ShoutBox128.png"
-		],
 		
 	"options_page": "popup.html",
 
 	"background": {
 		"persistent": true,
-		// "scripts": ["background.js"]
 		"page": "background.html"
 		},
 
 	"browser_action": {
-    	"default_icon": "ShoutBox128.png"
-    	// "default_popup": "popup.html"
-		}
-	// need to research this
-}
+    		"default_icon": "ShoutBox128.png"
+		},
+
+	"web_accessible_resources": [
+		"ShoutBox128.png"
+		]
+	}

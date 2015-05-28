@@ -1,3 +1,5 @@
+<script>document.body.style.overflowX = "hidden";</script>
+
 <% if (!user) { %>
 	<div style="background-color:rgb(44, 62, 80); color:white; text-align:center; margin-left:-3000px; margin-right:-3000px;">
 		<br/>
@@ -49,7 +51,8 @@
 		<br/><br/>
 		<h3>
 			Hello @<%= user.username %>, thank you for signing in.<br/>
-			To begin tweeting, type "@" in Chrome's URL Bar (OmniBox) and tap your spacebar.
+			To begin tweeting, type "@" in Chrome's address bar and tap your spacebar.<br/>
+			You can now close this page. Happy Tweeting! 
 		</h3>
 		<br/><br/>
 	</div>
@@ -58,10 +61,15 @@
 		<br/><br/>
 		<h2>ELSE</h2>
 		<h3>
-			<a href="/account" style="color:white;">
-			Account</a> | <a href="/logout" style="color:white;">Log Out</a>
+			<a href="/account" style="color:white;">Account</a>
+			 | <a href="/logout" style="color:white;">Log Out</a>
+			<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+				<input type="hidden" name="cmd" value="_s-xclick">
+				<input type="hidden" name="hosted_button_id" value="556S3GMN98Y76">
+				<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+				<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+			</form>
 		</h3>
 		<br/><br/>
 	</div>
-
 <% } %>
